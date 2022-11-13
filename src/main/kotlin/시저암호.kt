@@ -4,32 +4,18 @@ fun main(args: Array<String>) {
     println('a' + 2);
 
 
-    println(solution2("AB", 1))
+    println(solution2("a B z", 4))
 }
 
 fun solution2(s: String, n: Int): String {
-    var result = "";
-
-    for (i in s.indices) {
-        var ascii = s[i]
-
-        if (' ' == ascii) {
-            result += " "
-            continue;
+    return s.toCharArray().map {
+        when {
+            it == ' ' -> it
+            it in 'a'..'z' && it + n > 'z' -> 'a' + ((it + n) - 'z') - 1
+            it in 'A'..'Z' && it + n > 'Z' -> 'A' + ((it + n) - 'Z') - 1
+            else -> {
+                it + n
+            }
         }
-
-        ascii += n * 1
-
-        result += if (ascii > 'z') {
-            var def = ascii - 'z'
-            ('a' - 1) + def
-        } else if (ascii in 'Z' until 'a') {
-            var def = ascii - 'Z'
-            'A' + def
-        } else {
-            ascii
-        }
-    }
-
-    return result
+    }.joinToString("")
 }
