@@ -1,24 +1,17 @@
 fun canPlaceFlowers(flowerbed: IntArray, n: Int): Boolean {
     var n = n
 
-    if (flowerbed.size == 1 && flowerbed[0] == 0) {
-        n--
-    }
+    for (i in flowerbed.indices) {
+        if(flowerbed[i] == 0) {
+            var left = (i == 0) || flowerbed[i - 1] == 0
+            var right = (i == flowerbed.size - 1) || flowerbed[i + 1] == 0
 
-    if (flowerbed.size > 1 && flowerbed[0] == 0 && flowerbed[1] == 0) {
-        flowerbed[0] = 1
-        n--
-    }
-
-    for (i in 0 until flowerbed.size - 1) {
-        if (i > 0 && flowerbed[i - 1] == 0 && flowerbed[i] == 0 && flowerbed[i + 1] == 0) {
-            flowerbed[i] = 1
-            n--
+            if (left && right) {
+                flowerbed[i] = 1
+                n--
+            }
         }
-    }
 
-    if (flowerbed.size > 2 && flowerbed[flowerbed.size - 2] == 0 && flowerbed[flowerbed.size - 1] == 0) {
-        n--
     }
 
     return n <= 0
