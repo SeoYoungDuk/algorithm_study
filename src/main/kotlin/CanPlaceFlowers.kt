@@ -1,6 +1,5 @@
 fun canPlaceFlowers(flowerbed: IntArray, n: Int): Boolean {
     var n = n
-
     for (i in flowerbed.indices) {
         if(flowerbed[i] == 0) {
             var left = (i == 0) || flowerbed[i - 1] == 0
@@ -11,9 +10,7 @@ fun canPlaceFlowers(flowerbed: IntArray, n: Int): Boolean {
                 n--
             }
         }
-
     }
-
     return n <= 0
 }
 
